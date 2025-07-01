@@ -5,43 +5,32 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import LandingCard from "./SectionEntry.astro";
 
 // Icons
-const data = [
+const projects = [
   {
-    year: "2025",
-    title: "CSS Mesh",
-    link: "https://cssmesh.com",
-    description: `A collection of beautiful mesh gradients made with pure CSS. Click on any gradient to copy its CSS.`,
+    time: "2023-2025",
+    title: "UAV Forge",
+    link: "https://sites.uci.edu/uavforgeuci/",
+    description: `
+      Autonomous drone team for which I developed the inference architecture and 
+      obstacle avoidance systems. U.S. #1 at SUAS 2025.
+    `
   },
   {
-    year: "2025",
-    link: "https://pricingpatterns.com",
-    title: "Pricing Patterns",
-    description: `Real-world pricing page examples.`,
+    time: "2022-2025",
+    title: "AntAlmanac",
+    link: "https://antalmanac.com/",
+    description: `
+      Schedule-planning web application trusted by tens of thousands of UC Irvine students.
+      I led as well as developed as a fullstack engineer on a React, tRPC, and PostgreSQL stack.
+    `
   },
   {
-    year: "2024",
-    link: "https://oxbowui.com",
-    title: "Oxbow UI ",
-    description: `Components and UI Blocks crafted with Tailwind CSS. Clean, responsive, and simple to customize.`,
-  },
-  {
-    year: "2023",
-    title: "Lexington Themes",
-    link: "https://lexingtonthemes.com",
-    description: `Premium multipage themes crafted with Astro and Tailwind CSS.`,
-  },
-  {
-    year: "2020",
-    title: "SVG Doodles",
-    link: "https://svgdoodles.com",
-    description: `A free collection of different editable SVGs to spice up your designs.
-`,
-  },
-  {
-    year: "2018",
-    title: "Colors & Fonts",
-    link: "https://colorsandfonts.com",
-    description: `Color & typography tools for web developers & digital designers.`,
+    time: "2025",
+    title: "frame-transforms",
+    link: "https://pypi.org/project/frame-transforms/",
+    description: `
+      Lightweight, thread-safe, Python-native PyPi (pip) package to automatically compute frame transformations in robotics.
+    `
   },
 ];
 ---
@@ -58,12 +47,12 @@ const data = [
       </div>
       <div class="lg:col-span-2 flex flex-col gap-8">
         {
-          data.map((project) => (
+          projects.map((project) => (
             <LandingCard
               link={project.link}
               title={project.title}
               description={project.description}
-              time={project.year}
+              time={project.time}
             />
           ))
         }
