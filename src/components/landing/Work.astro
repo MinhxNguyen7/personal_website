@@ -1,9 +1,10 @@
 ---
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import LandingCard from "./SectionEntry.astro";
 
-const work_experiences: Array<{time: string, title: string, subtitle?: string, description: string, link?: string}> = [
+import LandingCard, { Props as LandingCardProps} from "./SectionEntry.astro";
+
+const work_experiences: Array<LandingCardProps> = [
   {
     time: "Jul 2025 - Dec 2025",
     title: "Automation/Controls Engineer Intern",

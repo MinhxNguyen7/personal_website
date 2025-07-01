@@ -2,10 +2,10 @@
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import LandingCard from "./SectionEntry.astro";
+import LandingCard, { Props as LandingCardProps } from "./SectionEntry.astro";
 
 // Icons
-const projects = [
+const projects: Array<LandingCardProps> = [
   {
     time: "2023-2025",
     title: "UAV Forge",
@@ -45,7 +45,7 @@ const projects = [
           Projects
         </Text>
       </div>
-      <div class="lg:col-span-2 flex flex-col gap-8">
+      <div class="lg:col-span-2 flex flex-col gap-2">
         {
           projects.map((project) => (
             <LandingCard
