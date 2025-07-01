@@ -39,7 +39,7 @@ const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
                   title={tag}
                   aria-label={tag}
                   href={`/blog/tags/${tag}`}
-                  class="text-xs capitalize text-base-600 dark:text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-white"
+                  class="text-xs capitalize text-base-600 dark:text-base-500 hover:text-base-900 dark:hover:text-white"
                 >
                   {tag}
                 </a>
