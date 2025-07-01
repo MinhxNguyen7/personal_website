@@ -31,17 +31,16 @@ const endTime = timeIsDuration ? time.split("-")[1].trim() : undefined;
   rel={isExternalLink ? "noopener noreferrer" : null}
 >
   <article
-    class="group relative grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start"
+    class="group relative grid gap-4 grid-cols-1 lg:grid-cols-3 items-start"
   >
     <div
       class="absolute -inset-y-4 z-0 scale-95 bg-base-50 dark:bg-base-800/20 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 -inset-x-4 rounded-2xl duration-300"
     />
     <div class="lg:col-span-2">
-
       <Text
         tag="h3"
         variant="textSM"
-        class="font-medium tracking-tight text-base-900 dark:text-white"
+        class="font-medium text-base-900 dark:text-white z-20"
       >
         {title}
       </Text>
@@ -65,32 +64,34 @@ const endTime = timeIsDuration ? time.split("-")[1].trim() : undefined;
           ))
         }
       </div>
-
     </div>
-      <div class=`
-        ${timeIsDurationMonths ? "flex-col" : "flex-row"} 
-        relative z-10 flex items-end text-sm lg:ml-auto
-        text-base-600 dark:text-base-400`
-      >
-        {
-          timeIsDuration
-          ? (
-            <Text variant="textXS">
-              <time>{startTime}</time>
-            </Text>
-            <Text variant="textXS">
-              -
-            </Text>
-            <Text variant="textXS">
-              <time>{endTime}</time>
-            </Text>
-          )
-          : (
-            <Text variant="textXS">
-              <time>{time}</time>
-            </Text>
-          )
-        }
-      </div>
+
+    <div class=`
+      ${timeIsDurationMonths ? "lg:flex-col" : "flex-row"} 
+      relative z-10 flex items-end text-sm
+      text-base-600 dark:text-base-400
+      lg:justify-end
+      `
+    >
+      {
+        timeIsDuration
+        ? (
+          <Text variant="textXS">
+            <time>{startTime}</time>
+          </Text>
+          <Text variant="textXS">
+            -
+          </Text>
+          <Text variant="textXS">
+            <time>{endTime}</time>
+          </Text>
+        )
+        : (
+          <Text variant="textXS">
+            <time>{time}</time>
+          </Text>
+        )
+      }
+    </div>
   </article>
 </a>
