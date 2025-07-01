@@ -11,52 +11,28 @@ import Book from "@/components/fundations/icons/Book.astro";
 import ThemeToggle from "@/components/assets/ThemeToggle.astro";
 ---
 
-<div class="fixed bottom-2 left-0 right-0 flex justify-center z-50">
-  <div class="bg-base-200 dark:bg-base-950 rounded-xl p-0.5 w-auto">
-    <div class="flex items-center justify-between p-0.5 gap-1">
-      <!-- Logo/Home button -->
-      <a
-        href="/"
-        aria-label="Home"
-        class="flex items-center font-medium justify-center transition-all rounded-lg items-center duration-300 focus:ring-2 focus:outline-none focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-base-900 text-base-900 dark:text-white bg-base-50 dark:bg-base-800 hover:bg-base-100 focus:outline-base-100 dark:text-white dark:bg-base-800 dark:hover:bg-base-800 dark:focus:outline-base-800 size-10 text-sm dark:focus:ring-offset-base-900"
-      >
-        /
-      </a>
+<div class="fixed bottom-2 left-4 right-0 flex justify-start z-50">
+  <div class="flex flex-col items-center justify-between p-0.5 gap-1">
+    <!-- Logo/Home button -->
+    <a
+      href="/"
+      aria-label="Home"
+      class="flex items-center font-medium justify-center transition-all rounded-lg items-center duration-300 focus:ring-2 focus:outline-none focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-base-900 text-base-900 dark:text-white bg-base-50 dark:bg-base-800 hover:bg-base-100 focus:outline-base-100 dark:text-white dark:bg-base-800 dark:hover:bg-base-800 dark:focus:outline-base-800 size-10 text-sm dark:focus:ring-offset-base-900"
+    >
+      /
+    </a>
 
-      <Button
-        isLink={true}
-        iconOnly
-        size="base"
-        variant="muted"
-        href="/system/overview"
-        aria-label="System Overview"
-      >
-        <Eye slot="icon" size="sm" />
-      </Button>
+    <Button
+      isLink={true}
+      iconOnly
+      size="base"
+      variant="muted"
+      href="/system/overview"
+      aria-label="System Overview"
+    >
+      <Eye slot="icon" size="sm" />
+    </Button>
 
-      <Button
-        isLink={true}
-        iconOnly
-        size="base"
-        variant="muted"
-        href="/blog/"
-        aria-label="Blog"
-      >
-        <Book slot="icon" size="sm" />
-      </Button>
-
-      <ThemeToggle aria-label="Toggle theme" />
-
-      <Button
-        isLink={true}
-        iconOnly
-        size="base"
-        variant="muted"
-        href="https://buy.polar.sh/polar_cl_eyHNPWW7mijKnLic9hIog326Sm6fUbL3jCS_r9zLKqE"
-        aria-label="Checkout"
-      >
-        <Cart slot="icon" size="sm" />
-      </Button>
-    </div>
+    <ThemeToggle aria-label="Toggle theme" />
   </div>
 </div>
