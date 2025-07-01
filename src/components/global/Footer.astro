@@ -2,40 +2,56 @@
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const socials = [
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/minhxnguyen7/"
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/MinhxNguyen7/"
+  }
+]
 ---
 
 <footer>
   <Wrapper variant="standard">
     <div
-      class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b pt-8 pb-24 border-base-200 dark:border-base-800"
+      class="grid gap-4 gird-cols-1 lg:grid-cols-3 border-b pb-24 border-base-200 dark:border-base-800 z-10"
     >
       <Text tag="h3" variant="textSM" class="text-base-900 dark:text-white">
-        Helsinki, Finland
+        Irvine, California
         <span
           id="clock"
           class="block text-base-600 dark:text-base-500 text-xs"
         >
         </span>
       </Text>
-      <Text
-        tag="p"
-        variant="textXS"
-        class="text-base-600 dark:text-base-500 lg:col-span-2"
-      >
-        © Copyright Lexington Themes <span id="year"></span>. All rights
-        reserved. Designed and built in the Åland Islands by Michael Andreuzza.
-      </Text>
+
+      <div class="flex flex-row gap-12 self-end justify-items-start px-1">
+        {socials.map(({name, href}) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={name}
+          >
+            <Text tag="span" variant="textXS" class="text-base-600 dark:text-base-500">{name}</Text>
+          </a>
+        ))}
+      </div>
     </div>
   </Wrapper>
 </footer>
+
 <script type="module">
-  // Function to update the clock display with Helsinki time
   function updateClock() {
     // Get current date/time
     const now = new Date();
     // Format time for Helsinki timezone in 12-hour format
     const time = now.toLocaleTimeString("en-US", {
-      timeZone: "Europe/Helsinki", // Convert to Helsinki time
+      timeZone: "America/Los_Angeles",
       hour12: true, // Use 12-hour format (AM/PM)
       hour: "2-digit", // Always show 2 digits for hour (01, 02, etc.)
       minute: "2-digit", // Always show 2 digits for minutes (01, 02, etc.)
@@ -43,14 +59,8 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
     // Update the clock element in the DOM with the formatted time
     document.getElementById("clock").textContent = time;
   }
-  // Function to update the copyright year
-  function updateYear() {
-    // Get current year and update the year span element
-    document.getElementById("year").textContent = new Date().getFullYear();
-  }
-  // Initialize both clock and year on page load
+  
+  // Update time every second
   updateClock();
-  updateYear();
-  // Set up automatic clock updates every 1000ms (1 second)
   setInterval(updateClock, 1000);
 </script>
