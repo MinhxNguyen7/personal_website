@@ -3,28 +3,25 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import LandingCard from "./SectionEntry.astro";
 
-const data = [
+const work_experiences: Array<{time: string, title: string, subtitle?: string, description: string, link?: string}> = [
   {
-    period: "2023–2025",
-    title: "Swiss Modernism Showcase",
+    time: "Jul 2025 - Dec 2025",
+    title: "Automation/Controls Engineer Intern",
+    subtitle: "Ormco",
     description: `Curated and designed an exhibition highlighting the evolution of Swiss modernism in graphic design, showcasing iconic works and their influence on contemporary design.`,
-    location: "Zurich, Switzerland",
-    link: "#_",
   },
   {
-    period: "2020–2023",
-    title: "Helvetica Redefined",
-    description: `Redesigned the Helvetica type specimen to include modern variations and applications. The work explored the typeface's versatility and its legacy in Swiss design.`,
-    location: "Basel, Switzerland",
-    link: "#_",
+    time: "Jun 2024 - Sep 2024",
+    title: "Research Fellow",
+    subtitle: "Digital Learning Lab, UC Irvine",
+    description: "Researched and developed culturally-accessible improvements to elementary computer education.",
   },
   {
-    period: "2017–2020",
-    title: "Swiss Design Principles",
-    description: `Developed educational materials and workshops on the core principles of Swiss design, focusing on grid systems, typography, and minimalist aesthetics.`,
-    location: "Geneva, Switzerland",
-    link: "#_",
-  },
+    time: "Jun 2022 - Aug 2022",
+    title: "Computer Science Teaching Assistant",
+    subtitle: "Girls Who Code",
+    description: "Co-taught class of 60+ students basic web development while closely mentoring groups of ~12 advisees."
+  }
 ];
 ---
 
@@ -40,12 +37,13 @@ const data = [
       </div>
       <div class="flex flex-col gap-12 lg:col-span-2">
         {
-          data.map((work, index) => (
+          work_experiences.map((work, index) => (
             <LandingCard
-              link={work.link}
+              time={work.time}
               title={work.title}
+              subtitle={work.subtitle}
               description={work.description}
-              time={work.period}
+              link={work.link}
             />
           ))
         }
