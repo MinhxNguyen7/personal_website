@@ -2,7 +2,7 @@
 import Text from "@/components/fundations/elements/Text.astro";
 import { undefined } from "astro:schema";
 
-interface Props {
+export interface Props {
   time: string;
   title: string;
   subtitle?: string;
@@ -11,6 +11,11 @@ interface Props {
 }
 
 const { time, title, subtitle, description, link } = Astro.props;
+
+const descriptionSections = description
+  .split("\n")
+  .map((section) => section.trim())
+  .filter((section) => section.length > 0);
 
 const isLink = !!link && link !== "#_";
 const isExternalLink = isLink && !link.startsWith("/");
@@ -52,13 +57,15 @@ const endTime = timeIsDuration ? time.split("-")[1].trim() : undefined;
         </Text>
       )}
 
-      <Text
-        tag="p"
-        variant="textXS"
-        class="relative z-10 mt-2 text-base-600 dark:text-base-500"
-      >
-        {description}
-      </Text>
+      <div class="relative z-10 mt-2 text-base-600 dark:text-base-500">
+        {
+          descriptionSections.map((section, index) => (
+            <Text tag="p" variant="textXS">
+              {section}
+            </Text>
+          ))
+        }
+      </div>
 
     </div>
       <div class=`
