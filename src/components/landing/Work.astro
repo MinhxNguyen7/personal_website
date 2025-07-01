@@ -1,6 +1,8 @@
 ---
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import LandingCard from "./SectionEntry.astro";
+
 const data = [
   {
     period: "2023–2025",
@@ -38,55 +40,14 @@ const data = [
       </div>
       <div class="flex flex-col gap-12 lg:col-span-2">
         {
-          data.map((work, index) => {
-            const linkIsValid = work.link && work.link !== "#_";
-
-            return (
-              <article class="group relative grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start ">
-                <div class="lg:col-span-2">
-                    <Text
-                      tag="h3"
-                      variant="textSM"
-                      class=" font-medium tracking-tight text-base-900 dark:text-white    "
-                    >
-                      <div class:list={[
-                        "absolute", "-inset-x-1", "-inset-y-4", "z-0", "scale-95", "bg-base-50", 
-                        "-inset-x-4", "rounded-2xl", "duration-300",
-                        "dark:bg-base-800/20", "opacity-0", "transition", 
-                        linkIsValid ? "group-hover:scale-100 group-hover:opacity-100" : "", 
-                      ]}
-                      />
-                      {
-                        linkIsValid
-                        ? (
-                          <a href={work.link}>
-                              <span class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" />
-                              <span class="relative z-10"> {work.title}</span>
-                          </a>
-                        )
-                        : (
-                          <span class="relative z-10"> {work.title}</span>
-                        )
-                      }
-                    </Text>
-                    <Text
-                      tag="p"
-                      variant="textXS"
-                      class="relative z-10 mt-1 text-base-600 dark:text-base-500"
-                    >
-                      {work.description}
-                    </Text>
-                  </div>
-                <Text
-                  tag="p"
-                  variant="textXS"
-                  class="relative z-10 mt-1 flex items-center text-sm lg:ml-auto text-base-600 dark:text-base-500"
-                >
-                  <time datetime={work.period}> {work.period}</time>
-                </Text>
-              </article>
-            )
-          })
+          data.map((work, index) => (
+            <LandingCard
+              link={work.link}
+              title={work.title}
+              description={work.description}
+              time={work.period}
+            />
+          ))
         }
       </div>
     </div>

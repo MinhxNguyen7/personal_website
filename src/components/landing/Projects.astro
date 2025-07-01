@@ -2,6 +2,8 @@
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import LandingCard from "./SectionEntry.astro";
+
 // Icons
 const data = [
   {
@@ -57,37 +59,12 @@ const data = [
       <div class="lg:col-span-2 flex flex-col gap-8">
         {
           data.map((project) => (
-            <article class="group relative grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start ">
-              <div class="lg:col-span-2">
-                <Text
-                  tag="h3"
-                  variant="textSM"
-                  class=" font-medium tracking-tight text-base-900 dark:text-white    "
-                >
-                  <div class="absolute -inset-x-1 -inset-y-4 z-0 scale-95 bg-base-50 dark:bg-base-800/20    opacity-0 transition group-hover:scale-100 group-hover:opacity-100 -inset-x-4 rounded-2xl duration-300 " />
-                  <a href={project.link}>
-                    <>
-                      <span class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" />
-                      <span class="relative z-10"> {project.title}</span>
-                    </>
-                  </a>
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textXS"
-                  class="relative z-10 mt-1 text-base-600 dark:text-base-500      "
-                >
-                  {project.description}
-                </Text>
-              </div>
-              <Text
-                tag="p"
-                variant="textXS"
-                class="relative z-10   flex items-center text-sm text-base-600 dark:text-base-400  lg:ml-auto"
-              >
-                <time datetime={project.year}> {project.year}</time>
-              </Text>
-            </article>
+            <LandingCard
+              link={project.link}
+              title={project.title}
+              description={project.description}
+              time={project.year}
+            />
           ))
         }
       </div>

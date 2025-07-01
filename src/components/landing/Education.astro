@@ -2,6 +2,7 @@
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import SectionEntry from "./SectionEntry.astro";
 // Data
 const data = [
   {
@@ -38,31 +39,12 @@ const data = [
       <div class="flex flex-col gap-12 lg:col-span-2">
         {
           data.map((data, index) => (
-            <article class="group relative grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start ">
-              <div class="lg:col-span-2">
-                <Text
-                  tag="h3"
-                  variant="textSM"
-                  class=" font-medium tracking-tight text-base-900 dark:text-white    "
-                >
-                  {data.title}
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textXS"
-                  class=" mt-1 text-base-600 dark:text-base-500      "
-                >
-                  {data.description}
-                </Text>
-              </div>
-              <Text
-                tag="p"
-                variant="textXS"
-                class="text-base-600 dark:text-base-400  lg:ml-auto"
-              >
-                <time datetime={data.period}> {data.period}</time>
-              </Text>
-            </article>
+            <SectionEntry
+              link="#_"
+              title={data.title}
+              description={data.description}
+              time={data.period}
+            />
           ))
         }
       </div>
