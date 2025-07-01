@@ -2,26 +2,18 @@
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import SectionEntry from "./SectionEntry.astro";
-// Data
-const data = [
+import SectionEntry, { Props as SectionProps } from "./SectionEntry.astro";
+
+const education_entries: Array<SectionProps> = [
   {
-    period: "2020–2022",
-    title: "Master's in Graphic Design",
-    description: `Focused on Swiss design principles, grid systems, and typography. Completed a thesis on the impact of modernist design on digital interfaces.`,
-    location: "Zurich University of the Arts, Zurich, Switzerland",
-  },
-  {
-    period: "2016–2020",
-    title: "Bachelor's in Visual Communication",
-    description: `Studied visual communication with an emphasis on minimalist design and the history of Swiss typography. Participated in design datashops and exhibitions.`,
-    location: "University of Applied Sciences, Basel, Switzerland",
-  },
-  {
-    period: "2014–2016",
-    title: "Diploma in Design Fundamentals",
-    description: `Learned foundational design principles, including color theory, composition, and the basics of type design. Gained exposure to Swiss design aesthetics.`,
-    location: "Geneva School of Design and Art, Geneva, Switzerland",
+    time: "2023 - 2025",
+    title: "B.S. in Computer Science",
+    subtitle: "University of California, Irvine",
+    description: `
+      Learned fundamentals of computer science and specialized in intelligent systems.\n
+      Led 50+ student developers as Projects Committee Co-Chair of ICS Student Council.\n
+      Minors in Informatics and Sociology.
+    `,
   },
 ];
 ---
@@ -37,16 +29,7 @@ const data = [
         </Text>
       </div>
       <div class="flex flex-col gap-12 lg:col-span-2">
-        {
-          data.map((data, index) => (
-            <SectionEntry
-              link="#_"
-              title={data.title}
-              description={data.description}
-              time={data.period}
-            />
-          ))
-        }
+        {education_entries.map((entry, index) => <SectionEntry {...entry} />)}
       </div>
     </div>
   </Wrapper>
