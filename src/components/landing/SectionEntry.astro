@@ -1,5 +1,6 @@
 ---
 import Text from "@/components/fundations/elements/Text.astro";
+import { undefined } from "astro:schema";
 
 interface Props {
   time: string;
@@ -13,6 +14,12 @@ const { time, title, subtitle, description, link } = Astro.props;
 
 const isLink = !!link && link !== "#_";
 const isExternalLink = isLink && !link.startsWith("/");
+
+const timeIsDuration = time.includes("-");
+const timeIsDurationMonths = timeIsDuration && time.split("-")[0].trim().length > 4;
+
+const startTime = timeIsDuration ? time.split("-")[0].trim() : undefined;
+const endTime = timeIsDuration ? time.split("-")[1].trim() : undefined;
 ---
 <a
   href={isLink ? link : null} 
@@ -54,12 +61,30 @@ const isExternalLink = isLink && !link.startsWith("/");
       </Text>
 
     </div>
-    <Text
-      tag="p"
-      variant="textXS"
-      class="relative z-10 flex items-center text-sm text-base-600 dark:text-base-400 lg:ml-auto"
-    >
-      <time datetime={time}> {time}</time>
-    </Text>
+      <div class=`
+        ${timeIsDurationMonths ? "flex-col" : "flex-row"} 
+        relative z-10 flex items-end text-sm lg:ml-auto
+        text-base-600 dark:text-base-400`
+      >
+        {
+          timeIsDuration
+          ? (
+            <Text variant="textXS">
+              <time>{startTime}</time>
+            </Text>
+            <Text variant="textXS">
+              -
+            </Text>
+            <Text variant="textXS">
+              <time>{endTime}</time>
+            </Text>
+          )
+          : (
+            <Text variant="textXS">
+              <time>{time}</time>
+            </Text>
+          )
+        }
+      </div>
   </article>
 </a>
