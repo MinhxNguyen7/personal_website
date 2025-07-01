@@ -30,14 +30,14 @@ const endTime = timeIsDuration ? time.split("-")[1].trim() : undefined;
   target={isExternalLink ? "_blank" : null} 
   rel={isExternalLink ? "noopener noreferrer" : null}
   class="
-    rounded-xl
+    rounded-xl box-content
     outline-1 outline-white dark:outline-base-900 
     transition-colors duration-100 
     hover:outline hover:outline-base-400
-    "
+  "
 >
   <article
-    class="m-2 group relative grid gap-4 grid-cols-1 lg:grid-cols-3 items-start"
+    class="group relative grid gap-4 grid-cols-1 lg:grid-cols-3 items-start lg:m-2"
   >
     <div class="lg:col-span-2">
       <Text
@@ -58,7 +58,7 @@ const endTime = timeIsDuration ? time.split("-")[1].trim() : undefined;
         </Text>
       )}
 
-      <div class="relative z-10 mt-2 text-base-600 dark:text-base-500">
+      <div class="relative z-10 text-base-600 dark:text-base-500">
         {
           descriptionSections.map((section, index) => (
             <Text tag="p" variant="textXS">
