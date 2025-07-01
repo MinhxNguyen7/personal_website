@@ -1,0 +1,99 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+
+export interface Props {
+  time: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+  link?: string;
+}
+
+const { time, title, subtitle, description, link } = Astro.props;
+
+const descriptionSections = description
+  .split("\n")
+  .map((section) => section.trim())
+  .filter((section) => section.length > 0);
+
+const isLink = !!link && link !== "#_";
+const isExternalLink = isLink && !link.startsWith("/");
+
+const timeIsDuration = time.includes("-");
+const timeIsDurationMonths = timeIsDuration && time.split("-")[0].trim().length > 4;
+
+const startTime = timeIsDuration ? time.split("-")[0].trim() : undefined;
+const endTime = timeIsDuration ? time.split("-")[1].trim() : undefined;
+---
+<a
+  href={isLink ? link : null} 
+  target={isExternalLink ? "_blank" : null} 
+  rel={isExternalLink ? "noopener noreferrer" : null}
+  class="
+    rounded-xl box-content
+    outline-1 outline-white dark:outline-base-900 
+    transition-colors duration-100 hover:outline-base-400
+  "
+>
+  <article
+    class="group relative grid grid-cols-1 lg:grid-cols-3 items-start lg:m-2"
+  >
+    <div class="lg:col-span-2">
+      <Text
+        tag="h3"
+        variant="textSM"
+        class="font-medium text-base-900 dark:text-white z-20"
+      >
+        {title}
+      </Text>
+
+      {subtitle && (
+        <Text
+          tag="h4"
+          variant="textXS"
+          class="text-base-700 dark:text-base-400"
+        >
+          {subtitle}
+        </Text>
+      )}
+
+      <div class="relative z-10 text-base-600 dark:text-base-500 mt-2">
+        {
+          descriptionSections.map((section, index) => (
+            <Text tag="p" variant="textXS">
+              {section}
+            </Text>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class=`
+      ${timeIsDurationMonths ? "lg:flex-col" : "flex-row"} 
+      relative z-10 flex items-end text-sm
+      text-base-600 dark:text-base-400
+      lg:justify-end
+      `
+    >
+      {
+        timeIsDuration
+        ? (
+          <Text variant="textXS">
+            <time>{startTime}</time>
+          </Text>
+          <Text variant="textXS">
+            -
+          </Text>
+          <Text variant="textXS">
+            <time>{endTime}</time>
+          </Text>
+        )
+        : (
+          <Text variant="textXS">
+            <time>{time}</time>
+          </Text>
+        )
+      }
+    </div>
+  </article>
+</a>

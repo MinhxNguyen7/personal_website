@@ -2,25 +2,18 @@
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Data
-const data = [
+import SectionEntry, { Props as LandingCardProps } from "./SectionEntry.astro";
+
+const education_entries: Array<LandingCardProps> = [
   {
-    period: "2020–2022",
-    title: "Master's in Graphic Design",
-    description: `Focused on Swiss design principles, grid systems, and typography. Completed a thesis on the impact of modernist design on digital interfaces.`,
-    location: "Zurich University of the Arts, Zurich, Switzerland",
-  },
-  {
-    period: "2016–2020",
-    title: "Bachelor's in Visual Communication",
-    description: `Studied visual communication with an emphasis on minimalist design and the history of Swiss typography. Participated in design datashops and exhibitions.`,
-    location: "University of Applied Sciences, Basel, Switzerland",
-  },
-  {
-    period: "2014–2016",
-    title: "Diploma in Design Fundamentals",
-    description: `Learned foundational design principles, including color theory, composition, and the basics of type design. Gained exposure to Swiss design aesthetics.`,
-    location: "Geneva School of Design and Art, Geneva, Switzerland",
+    time: "2023 - 2025",
+    title: "B.S. in Computer Science",
+    subtitle: "University of California, Irvine",
+    description: `
+      Learned fundamentals of computer science and specialized in intelligent systems.\n
+      Led 50+ student developers as Projects Committee Co-Chair of ICS Student Council.\n
+      Minors in Informatics and Sociology.
+    `,
   },
 ];
 ---
@@ -28,43 +21,15 @@ const data = [
 <section>
   <Wrapper variant="standard">
     <div
-      class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b py-8 border-base-200 dark:border-base-800"
+      class="grid grid-cols-1 md:grid-cols-3 border-b py-8 border-base-200 dark:border-base-800"
     >
       <div class="lg:sticky lg:top-24 lg:z-40 self-start">
-        <Text tag="h2" variant="textSM" class="text-base-900 dark:text-white">
+        <Text tag="h2" variant="textSM" class="text-base-900 dark:text-white lg:pt-2">
           Education
         </Text>
       </div>
       <div class="flex flex-col gap-12 lg:col-span-2">
-        {
-          data.map((data, index) => (
-            <article class="group relative grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start ">
-              <div class="lg:col-span-2">
-                <Text
-                  tag="h3"
-                  variant="textSM"
-                  class=" font-medium tracking-tight text-base-900 dark:text-white    "
-                >
-                  {data.title}
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textXS"
-                  class=" mt-1 text-base-600 dark:text-base-500      "
-                >
-                  {data.description}
-                </Text>
-              </div>
-              <Text
-                tag="p"
-                variant="textXS"
-                class="text-base-600 dark:text-base-400  lg:ml-auto"
-              >
-                <time datetime={data.period}> {data.period}</time>
-              </Text>
-            </article>
-          ))
-        }
+        {education_entries.map((entry, index) => <SectionEntry {...entry} />)}
       </div>
     </div>
   </Wrapper>
