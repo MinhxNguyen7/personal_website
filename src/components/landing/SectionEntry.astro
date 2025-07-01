@@ -29,13 +29,16 @@ const endTime = timeIsDuration ? time.split("-")[1].trim() : undefined;
   href={isLink ? link : null} 
   target={isExternalLink ? "_blank" : null} 
   rel={isExternalLink ? "noopener noreferrer" : null}
+  class="
+    rounded-xl
+    outline-1 outline-white dark:outline-base-900 
+    transition-colors duration-100 
+    hover:outline hover:outline-base-400
+    "
 >
   <article
-    class="group relative grid gap-4 grid-cols-1 lg:grid-cols-3 items-start"
+    class="m-2 group relative grid gap-4 grid-cols-1 lg:grid-cols-3 items-start"
   >
-    <div
-      class="absolute -inset-y-4 z-0 scale-95 bg-base-50 dark:bg-base-800/20 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 -inset-x-4 rounded-2xl duration-300"
-    />
     <div class="lg:col-span-2">
       <Text
         tag="h3"
