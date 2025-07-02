@@ -1,58 +1,24 @@
 ---
-// Fundations
-import Text from "@/components/fundations/elements/Text.astro";
+import SectionEntry from "@/components/landing/SectionEntry.astro";
+
 // Content
-const { url, title, description, pubDate } = {
-  url: "/blog/posts/" + Astro.props.post.slug,
+const { link, title, description, pubDate } = {
+  link: "/blog/posts/" + Astro.props.post.slug,
   title: Astro.props.post.data.title,
   description: Astro.props.post.data.description,
-  pubDate: new Date(Astro.props.post.data.pubDate).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "2-digit",
-  }),
+  pubDate: new Date(Astro.props.post.data.pubDate)
+    .toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+    }
+  )
 };
 ---
 
-<article
-  class="group relative grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start"
->
-  <div class="lg:col-span-2">
-    <Text
-      tag="h3"
-      variant="textSM"
-      class="font-medium tracking-tight text-base-900 dark:text-white"
-    >
-      <div
-        class="absolute -inset-x-1 -inset-y-4 z-0 scale-95 bg-base-50 dark:bg-base-800/20 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 -inset-x-4 rounded-2xl duration-300"
-      >
-      </div>
-      <a
-        href={url}
-        title={`Read more: ${title}`}
-        aria-label={`Read blog post: ${title}`}
-      >
-        <>
-          <span
-            class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"
-          ></span>
-          <span class="relative z-10"> {title}</span>
-        </>
-      </a>
-    </Text>
-    <Text
-      tag="p"
-      variant="textXS"
-      class="relative z-10 mt-1 text-base-600 dark:text-base-500"
-    >
-      {description}
-    </Text>
-  </div>
-  <Text
-    tag="p"
-    variant="textXS"
-    class="relative z-10 flex items-center text-sm text-base-600 dark:text-base-400 lg:ml-auto"
-  >
-    <time datetime={pubDate}> {pubDate}</time>
-  </Text>
-</article>
+<SectionEntry
+  {link}
+  {title}
+  {description}
+  time={pubDate}
+/>
