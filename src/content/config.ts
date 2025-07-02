@@ -8,7 +8,7 @@ const postsCollection = defineCollection({
       image: z.object({
         url: image(),
         alt: z.string(),
-      }),
+      }).optional(),
       tags: z.array(z.string()),
     }),
 });
