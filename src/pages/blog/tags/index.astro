@@ -1,14 +1,14 @@
 ---
-// Assets
-import { Image } from "astro:assets";
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Content
 import { getCollection } from "astro:content";
+
 // Get all posts
 const allPosts = await getCollection("posts");
+
 // Extract tags from all posts and count occurrences
 const tagCounts = allPosts.reduce((acc, post) => {
   post.data.tags.forEach((tag) => {
@@ -16,15 +16,9 @@ const tagCounts = allPosts.reduce((acc, post) => {
   });
   return acc;
 }, {});
+
 // Extract unique tags for display
 const tags = Object.keys(tagCounts);
-// Function to get the image for a specific tag
-function getTagImage(tag) {
-  const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
-  if (filteredPosts.length > 0) {
-    return filteredPosts[0].data.image.url; // Return the image of the first post with that tag
-  }
-}
 ---
 
 <BaseLayout>
