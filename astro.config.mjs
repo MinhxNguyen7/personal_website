@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from "@astrojs/sitemap";
 import mdx from '@astrojs/mdx';
 import vercel from '@astrojs/vercel';
+import robotsTxt from 'astro-robots-txt';
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -25,7 +26,7 @@ export default defineConfig({
   site: 'https://minh-nguyen.tech',
   base: '/',
   
-  integrations: [sitemap(), mdx()],
+  integrations: [sitemap(), mdx(), robotsTxt()],
   output: 'static',
   adapter: vercel()
 });
