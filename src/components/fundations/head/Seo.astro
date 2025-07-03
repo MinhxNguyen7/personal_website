@@ -1,31 +1,21 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
+
+const SITE_NAME = "Minh Nguyen";
+const SITE_DESCRIPTION = "Minh Nguyen's personal website, showcasing my projects, experience, and writings.";
+const DOMAIN = "https://minh-nguyen.tech";
 ---
 
 <AstroSeo
-  title="Your Page Title"
-  description="A detailed description of your page content."
-  canonical="https://yourwebsite.com/current-page"
+  title={SITE_NAME}
+  description={SITE_DESCRIPTION}
+  canonical={DOMAIN}
   openGraph={{
-    url: "https://yourwebsite.com/current-page",
-    title: "Your Page Title",
-    description: "A detailed description of your page content.",
-    images: [
-      {
-        url: "https://yourwebsite.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Open Graph Image Alt",
-        type: "image/jpeg",
-      },
-    ],
-    site_name: "Your Site Name",
+    url: {DOMAIN},
+    title: {SITE_NAME},
+    description: {SITE_DESCRIPTION},
+    site_name: {SITE_NAME},
     type: "website",
     locale: "en_US",
-  }}
-  twitter={{
-    handle: "@yourhandle",
-    site: "@yourwebsite",
-    cardType: "summary_large_image",
   }}
 />
