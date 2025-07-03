@@ -23,6 +23,8 @@ export default defineConfig({
   },
 
   site: 'https://minh-nguyen.tech',
+  base: '/',
+  
   integrations: [sitemap(), mdx()],
   output: 'static',
   adapter: vercel()
