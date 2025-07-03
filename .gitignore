@@ -1,5 +1,6 @@
 # Build output
 dist/
+.vercel/
 
 # Dependencies
 node_modules/
@@ -33,4 +34,6 @@ pnpm-debug.log*
 *.swp
 *.tmp
 Thumbs.db
+
+# Astro specific files
 .astro/
