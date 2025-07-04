@@ -28,5 +28,8 @@ export default defineConfig({
   
   integrations: [sitemap(), mdx(), robotsTxt()],
   output: 'static',
-  adapter: vercel()
+  adapter: vercel({
+    webAnalytics: true,
+    speedInsights: true,
+  })
 });
