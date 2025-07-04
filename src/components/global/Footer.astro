@@ -3,6 +3,8 @@
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
+import Technologies from "./Technologies.astro";
+
 const socials = [
   {
     name: "LinkedIn",
@@ -18,7 +20,7 @@ const socials = [
 <footer>
   <Wrapper variant="standard">
     <div
-      class="grid gap-4 gird-cols-1 lg:grid-cols-3 border-b pb-24 border-base-200 dark:border-base-800 z-10"
+      class="grid gap-4 grid-cols-2 lg:grid-cols-3 mb-18 border-base-200 dark:border-base-800 z-10 align-middle"
     >
       <Text tag="h3" variant="textSM" class="text-base-900 dark:text-white">
         Irvine, California
@@ -29,7 +31,7 @@ const socials = [
         </span>
       </Text>
 
-      <div class="flex flex-row gap-12 self-end justify-items-start lg:pl-1">
+      <div class="flex flex-row gap-12 self-center justify-items-start lg:pl-1">
         {socials.map(({name, href}) => (
           <a
             href={href}
@@ -41,6 +43,8 @@ const socials = [
           </a>
         ))}
       </div>
+
+      <Technologies/>
     </div>
   </Wrapper>
 </footer>
