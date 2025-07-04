@@ -1,0 +1,39 @@
+---
+import AstroIcon from "@/components/fundations/icons/AstroFramework.astro";
+import TailwindIcon from "@/components/fundations/icons/Tailwind.astro";
+import TypeScriptIcon from "@/components/fundations/icons/TypeScript.astro";
+
+const icons = [
+  {
+    name: "Astro",
+    component: AstroIcon,
+    link: "https://astro.build/"
+  },
+  {
+    name: "TailwindCSS",
+    component: TailwindIcon,
+    link: "https://tailwindcss.com/"
+  },
+  {
+    name: "TypeScript",
+    component: TypeScriptIcon,
+    link: "https://www.typescriptlang.org/"
+  }
+]
+
+---
+<div class="h-6 lg:h-12 py-1" {...Astro.props}>
+  <div class="flex flex-row align-middle gap-4 h-full justify-start py-0.5 lg:justify-end text-black dark:text-base-500">
+    {icons.map(({name, component: Icon, link}) => (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={name}
+        class="flex items-center justify-center lg:my-2"
+      >
+        <Icon class="h-full" />
+      </a>
+    ))}
+  </div>
+</div>
