@@ -1,20 +1,16 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
-
-const SITE_NAME = "Minh Nguyen";
-const SITE_DESCRIPTION = "Minh Nguyen's personal website, showcasing my projects, experience, and writings.";
-const DOMAIN = "https://minh-nguyen.tech";
 ---
 
 <AstroSeo
-  title={SITE_NAME}
-  description={SITE_DESCRIPTION}
-  canonical={DOMAIN}
+  title="Minh Nguyen's Personal Website"
+  description="Minh Nguyen's personal website, showcasing projects, experience, and writings."
+  canonical="https://minh-nguyen.tech"
   openGraph={{
-    url: {DOMAIN},
-    title: {SITE_NAME},
-    description: {SITE_DESCRIPTION},
-    site_name: {SITE_NAME},
+    url: "https://minh-nguyen.tech",
+    title: "Landing Page",
+    description: "Minh Nguyen's personal website, showcasing projects, experience, and writings.",
+    site_name: "Minh Nguyen's Personal Website",
     type: "website",
     locale: "en_US",
   }}
