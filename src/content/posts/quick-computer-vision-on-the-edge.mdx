@@ -1,0 +1,56 @@
+---
+pubDate: 2025-07-05
+
+title: "Quick Computer Vision on The Edge"
+description: "Approaches that might enable zero/few-shot computer vision on edge devices by leveraging VLMs and agentic model training."
+tags: ["machine learning", "large language models", "computer vision"]
+---
+
+*Disclaimer: These approaches are speculative. I plan to validate them in the future.*
+
+## Computer Vision for All
+Computer vision (CV) on the edge has become a lot easier. Hardware advancements—including neural processors for phones, and [Nvidia Jetson](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/) for embedded systems—have enabled machine learning (ML) on a wide rage of devices. Simultaneously, CV models have become more capable and efficient. 
+
+Despite that, there are still many potential unserved use cases, specifically in niche applications. Why is there not a smart home device that notifies me that a window is open, or a backyard camera that saves photos of my dog (but not the neighbor's)? The technology is there.
+
+## The Obstacle
+The effort and expertise required to train an ML model, which must be repeated for each application, presents a substantial *inflexibility*. Either of the use cases above is trivially simple, but it is not worth developing a custom model for each. Recent advancements in language models, (e.g., [vision language models](https://www.nvidia.com/en-us/glossary/vision-language-models/)), are now providing that flexibility. For example, [OWL-ViT](https://arxiv.org/abs/2205.06230) can perform object detection with a text description and/or image samples. However, that comes at the cost of compute. Large language models (LLMs) typically require more processing power and memory than edge devices can provide.
+
+To summarize:
+
+1) Traditional CV models are fast, but inflexible.
+2) LLMs are flexible, but slow and resource-intensive.
+3) Users do not have the time or expertise to train ML models.
+
+## Potential Approaches
+
+### 1. VLM Data Labeling
+The most obvious idea is to use VLMs (e.g., [OWL-ViT](https://arxiv.org/abs/2205.06230)) to label data to train a lightweight CV model (e.g., [YOLOv9](https://github.com/MultimediaTechLab/YOLO), available with the [MIT License](https://opensource.org/license/mit)). The server would be done in the cloud or on a capable local computer. For the dog example:
+
+1. Set the device at its intended location, where it captures images and upload them to a server.
+2. The user describes their dog and optionally provide a few images. (E.g., "golden retriever with a red collar.")
+3. A VLM classifies whether the image contains the dog.
+4. The data is used to train a model, which is downloaded to the device.
+5. Optionally, the user labels false positives, which are used in prompting the VLM.
+
+If all goes well, the device can now detect the dog in real-time. However, what if the model underperforms? It could require hyper-parameter tuning, more data, or any number of other adjustments, but that would require substantial user intervention.
+
+### 2. Agentic Model Training
+To address the shortcoming of the previous approach, we can utilize an agentic approach to training. The agent would iteratively improve the model until the performance is satisfactory by experimenting with different training strategies and hyperparameters applying reason to the specific task and performance results. It could prompt the user for feedback or more data if necessary.
+
+This approach is inspired by [VisionAgent](https://github.com/landing-ai/vision-agent), which generates code to utilize a narrow range of VLM tools to perform CV tasks such as classifying images or counting objects. It reflects on performance results to make decisions. It seems to work well, which validates this approach's potential, but it does not work for compute-constrained environments.
+
+## Conclusion
+There have been many exciting advancements in edge CV and LLMs, so it only makes sense to combine them. If these approaches are successful, shortening the development time of CV systems from weeks to days and eliminating the need for expert intervention. Apart from the above examples, potential applications include: 
+
+- Target confirmation for [precision-guided munitions](https://en.wikipedia.org/wiki/Precision-guided_munition): For a specific strike, the system could be programmed to follow and only arm if it detects a specific target (e.g., "tank without V-shaped chevron"), reducing the risk of collateral damage.
+- Industrial safety monitoring: Cameras could monitor workers and equipment, flagging unsafe conditions specific to the worksite (e.g., "worker without a hard hat" or "forklift near a person").
+
+The democratization of visual AI would allow for a huge range of possibilities, many currently imaginable, motivating further exploration and development.
+
+### Post Script
+- As much as I disdain the misuse of LLMs (e.g., in school) as well as apocalyptic predictions about their impact, applications like these demonstrate the general need for the skill of *prompting*, in the same way that using a search engine ([unlike coding](https://www.inc.com/geoffrey-james/why-coding-bootcamps-dont-work.html)) is an essential skill for everyone.
+- Any ML system, to which the munitions application alludes, can be used positively or negatively. In this instance, if that deters the development technologies such as these, one must "long to go on all fours."[^1]
+
+## Footnotes
+[^1]: Voltaire. *[On the Advantages of Civilisation and Literature, to J. J. Rousseau](https://www.whitman.edu/VSA/letters/8.30.1755.html)*
