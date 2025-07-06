@@ -1,0 +1,46 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+  tags: Array<string>;
+}
+
+const { title, description, tags } = Astro.props;
+---
+
+<div
+  class="border-b border-base-200 dark:border-base-800 lg:sticky lg:top-24 lg:z-40 self-start text-balance"
+>
+  <a
+    href="/blog"
+    class="flex items-center text-xs text-base-900 hover:text-base-600 dark:text-base-500 gap-2"
+  >
+    ← To writings
+  </a>
+  <Text
+    tag="h1"
+    variant="textSM"
+    class="font-medium text-base-900 dark:text-white mt-8"
+  >
+    {title}
+  </Text>
+  <Text tag="p" variant="textXS" class="text-base-600 dark:text-base-500 mt-1">
+    {description}
+  </Text>
+  <div
+    class="relative flex h-full my-5 overflow-x-scroll gap-2 scrollable-content snap-x snap-proximity scrollbar-hide lg:flex-col lg:gap-1 lg:mt-10"
+  >
+    {
+      tags.map((tag) => (
+        <a
+          href={`/blog/tags/${tag}`}
+          class="text-xs lg:text-sm capitalize text-base-600 dark:text-base-500 hover:text-base-900 dark:hover:text-white"
+        >
+          {tag}
+        </a>
+      ))
+    }
+  </div>
+</div>
