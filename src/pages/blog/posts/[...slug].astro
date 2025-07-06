@@ -28,12 +28,15 @@ const slug = Astro.props.entry.slug;
 const allPosts = await getCollection("posts");
 
 allPosts.sort((a, b) => {
-  return new Date(b.data.pubDate).getTime().getTime() - new Date(a.data.pubDate).getTime().getTime();
+  return (
+    new Date(b.data.pubDate).getTime().getTime() -
+    new Date(a.data.pubDate).getTime().getTime()
+  );
 });
 
 // Sort and filter posts based on overlapping tags
 const tagsSet = new Set(tags);
-const postScores: Record<string, number> = {};  
+const postScores: Record<string, number> = {};
 allPosts.forEach((post) => {
   let score = 0;
   post.data.tags.forEach((tag) => {
@@ -47,8 +50,7 @@ allPosts.forEach((post) => {
   }
 });
 
-const relatedPosts = Object.entries(postScores)
-  .sort((a, b) => b[1] - a[1]) // Sort by score
+const relatedPosts = Object.entries(postScores).sort((a, b) => b[1] - a[1]); // Sort by score
 ---
 
 <BaseLayout
@@ -57,7 +59,7 @@ const relatedPosts = Object.entries(postScores)
     description,
   }}
 >
-    <section>
+  <section>
     <Wrapper variant="standard">
       <div
         class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b pb-8 pt-24 border-base-200 dark:border-base-800"
@@ -99,17 +101,19 @@ const relatedPosts = Object.entries(postScores)
           </div>
         </div>
         <div class="lg:col-span-2">
-          { image ? (
-            <Image
-              width={1000}
-              height={800}
-              loading="eager"
-              decoding="async"
-              alt={image.alt}
-              src={image.url}
-              class="object-cover object-center w-full aspect-12/6 lg:col-span-2 rounded-xl"
-            />
-          ) : null }
+          {
+            image ? (
+              <Image
+                width={1000}
+                height={800}
+                loading="eager"
+                decoding="async"
+                alt={image.alt}
+                src={image.url}
+                class="object-cover object-center w-full aspect-12/6 lg:col-span-2 rounded-xl"
+              />
+            ) : null
+          }
           <Wrapper variant="prose" class="mt-4">
             <Content />
           </Wrapper>
