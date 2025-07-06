@@ -34,7 +34,12 @@ const allPosts = allPostsUnsorted.sort(
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 ---
 
-<BaseLayout pageTitle={tag}>
+<BaseLayout 
+  seo={{
+    title: `Blog - ${tag}`,
+    description: `Explore posts tagged with "${tag}".`,
+  }}
+>
   <section>
     <Wrapper variant="standard">
       <div
