@@ -14,14 +14,14 @@ export interface Props {
 }
 
 const { 
-  title = "Minh Nguyen's Personal Website", 
+  title = "Minh's Website", 
   description = "Website showcasing projects, experience, and writings.", 
   openGraph = {}
 } = Astro.props;
 
 const {
   url: ogUrl = Astro.url.href,
-  site_name: ogSite_name = "Minh Nguyen's Personal Website",
+  site_name: ogSite_name = title,
   locale: ogLocale = "en_US",
   title: ogTitle = title,
 } = openGraph;
@@ -33,7 +33,7 @@ const {
   description={description}
   canonical={Astro.url.href}
   openGraph={{
-    site_name: "Minh Nguyen's Personal Website",
+    site_name: "Minh's Website",
     type: "website",
   }}
 />
