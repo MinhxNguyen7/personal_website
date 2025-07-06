@@ -30,7 +30,7 @@ const { title, description, tags } = Astro.props;
     {description}
   </Text>
   <div
-    class="relative flex h-full my-5 overflow-x-scroll gap-2 scrollable-content snap-x snap-proximity scrollbar-hide lg:flex-col lg:gap-1 lg:mt-10"
+    class="relative flex flex-col h-full my-5 overflow-x-scroll gap-1 scrollable-content snap-x snap-proximity scrollbar-hide lg:flex-col lg:mt-10"
   >
     {
       tags.map((tag) => (
