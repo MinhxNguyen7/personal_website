@@ -16,7 +16,12 @@ const allPosts = allPostsUnsorted.sort(
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 ---
 
-<BaseLayout>
+<BaseLayout
+  seo={{
+    title: "Writings",
+    description: "Writings on various topics.",
+  }}
+>
   <section>
     <Wrapper variant="standard">
       <div
