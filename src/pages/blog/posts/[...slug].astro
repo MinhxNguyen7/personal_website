@@ -9,6 +9,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import BlogEntry from "@/components/blog/BlogEntry.astro";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import BlogHeader from "@/components/blog/BlogHeader.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("posts");
@@ -27,13 +28,14 @@ const slug = Astro.props.entry.slug;
 
 const allPosts = await getCollection("posts");
 
-allPosts.sort((a, b) => {
-  return new Date(b.data.pubDate).getTime().getTime() - new Date(a.data.pubDate).getTime().getTime();
-});
+allPosts.sort(
+  (a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+);
 
 // Sort and filter posts based on overlapping tags
 const tagsSet = new Set(tags);
-const postScores: Record<string, number> = {};  
+const postScores: Record<string, number> = {};
 allPosts.forEach((post) => {
   let score = 0;
   post.data.tags.forEach((tag) => {
@@ -47,8 +49,7 @@ allPosts.forEach((post) => {
   }
 });
 
-const relatedPosts = Object.entries(postScores)
-  .sort((a, b) => b[1] - a[1]) // Sort by score
+const relatedPosts = Object.entries(postScores).sort((a, b) => b[1] - a[1]); // Sort by score
 ---
 
 <BaseLayout
@@ -57,60 +58,31 @@ const relatedPosts = Object.entries(postScores)
     description,
   }}
 >
-    <section>
+  <section>
     <Wrapper variant="standard">
       <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b pb-8 pt-24 border-base-200 dark:border-base-800"
+        class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b pb-8 pt-8 border-base-200 dark:border-base-800"
       >
-        <div class="lg:sticky lg:top-24 lg:z-40 self-start text-balance">
-          <a
-            href="/blog"
-            class="flex items-center text-xs text-base-900 dark:text-white hover:text-base-600 dark:text-base-500 gap-2"
-          >
-            ← To writings
-          </a>
-          <Text
-            tag="h1"
-            variant="textSM"
-            class="font-medium text-base-900 dark:text-white mt-8"
-          >
-            {title}
-          </Text>
-          <Text
-            tag="p"
-            variant="textXS"
-            class="text-base-600 dark:text-base-500 mt-1"
-          >
-            {description}
-          </Text>
-          <div
-            class="relative flex h-full mt-1 overflow-x-scroll gap-2 scrollable-content snap-x snap-proximity scrollbar-hide lg:flex-col lg:gap-1 lg:mt-8"
-          >
-            {
-              tags.map((tag) => (
-                <a
-                  href={`/blog/tags/${tag}`}
-                  class="text-xs capitalize text-base-600 dark:text-base-500 hover:text-base-900 dark:hover:text-white"
-                >
-                  {tag}
-                </a>
-              ))
-            }
-          </div>
-        </div>
+        <BlogHeader
+          title={title}
+          description={description}
+          tags={tags}
+        />
         <div class="lg:col-span-2">
-          { image ? (
-            <Image
-              width={1000}
-              height={800}
-              loading="eager"
-              decoding="async"
-              alt={image.alt}
-              src={image.url}
-              class="object-cover object-center w-full aspect-12/6 lg:col-span-2 rounded-xl"
-            />
-          ) : null }
-          <Wrapper variant="prose" class="mt-4">
+          {
+            image ? (
+              <Image
+                width={1000}
+                height={800}
+                loading="eager"
+                decoding="async"
+                alt={image.alt}
+                src={image.url}
+                class="object-cover object-center w-full aspect-12/6 lg:col-span-2 rounded-xl"
+              />
+            ) : null
+          }
+          <Wrapper variant="prose">
             <Content />
           </Wrapper>
         </div>

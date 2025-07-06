@@ -6,10 +6,10 @@ interface Props {
 const { variant = "standard", class: extraClass = "" } = Astro.props;
 // Map each variant to its specific classes
 const variantClasses = {
-  standard: "max-w-5xl mx-auto px-8",
+  standard: "max-w-6xl mx-auto px-8",
   // For Markdown blog posts
   prose:`
-    prose prose-md prose-headings:font-medium 
+    prose prose-sm lg:prose-md prose-headings:font-medium prose-p:text-justify
     text-base-600 dark:text-base-400 prose-headings:text-base-900 dark:prose-headings:text-white 
     prose-blockquote:text-base-500 dark:prose-blockquote:border-base-500 
     prose-blockquote:font-normal prose-blockquote:tracking-normal 
