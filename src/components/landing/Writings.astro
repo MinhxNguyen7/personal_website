@@ -1,44 +1,59 @@
 ---
 // Fundations
-
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
 // Component
 import BlogEntry from "@/components/blog/BlogEntry.astro";
+import RSSIcon from "@/components/fundations/icons/RSS.astro";
+
 // Content
 import { getCollection } from "astro:content";
+
 const allPostsUnsorted = await getCollection("posts");
 // Sort the posts in descending order by publication date (newest to oldest)
 const allPosts = allPostsUnsorted.sort(
-  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
 );
 ---
 
-{allPosts.length > 0 ? (
-  <section>
-    <Wrapper variant="standard">
-      <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b py-8 border-base-200 dark:border-base-800"
-      >
-        <div class="lg:sticky lg:top-24 lg:z-40 self-start">
-          <Text
-            tag="h2"
-            variant="textSM"
-            class="font-medium text-base-900 dark:text-white pt-2"
-          >
-            Latest Writings
-          </Text>
-          <a
-            href="/blog"
-            class="text-xs capitalize text-base-600 dark:text-base-600 hover:text-base-900 dark:hover:text-white"
-            >Read all posts
-          </a>
+{
+  allPosts.length > 0 ? (
+    <section>
+      <Wrapper variant="standard">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b py-8 border-base-200 dark:border-base-800">
+          <div class="lg:sticky lg:top-24 lg:z-40 self-start">
+            <div class="flex items-baseline justify-start gap-2">
+              <Text
+                tag="h2"
+                variant="textSM"
+                class="font-medium text-base-900 dark:text-white pt-2"
+              >
+                Latest Writings
+              </Text>
+              <a
+                aria-label="RSS Feed"
+                title="RSS Feed"
+                href="/rss.xml"
+                class="h-4 w-4 text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-white"
+              >
+                <RSSIcon />
+              </a>
+            </div>
+            <a
+              href="/blog"
+              class="text-xs capitalize text-base-600 dark:text-base-600 hover:text-base-900 dark:hover:text-white"
+            >
+              Read all posts
+            </a>
+          </div>
+          <div class="flex flex-col gap-12 lg:col-span-2">
+            {allPosts.slice(0, 2).map((post) => (
+              <BlogEntry post={post} />
+            ))}
+          </div>
         </div>
-        <div class="flex flex-col gap-12 lg:col-span-2">
-          {allPosts.slice(0, 2).map((post) => <BlogEntry post={post} />)}
-        </div>
-      </div>
-    </Wrapper>
-  </section>
-) : null
+      </Wrapper>
+    </section>
+  ) : null
 }
