@@ -21,7 +21,12 @@ const tags = Object.keys(tagCounts);
 tags.sort((a, b) => tagCounts[b] - tagCounts[a]); // Sort tags by count in descending order
 ---
 
-<BaseLayout>
+<BaseLayout
+  seo={{
+    title: "Blog - All Tags",
+    description: "List of all tags and their frequencies.",
+  }}
+>
   <section>
     <Wrapper variant="standard">
       <div
