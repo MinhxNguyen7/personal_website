@@ -1,17 +1,46 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  openGraph?: {
+    url?: string;
+    title?: string;
+    description?: string;
+    site_name?: string;
+    locale?: string;
+  };
+}
+
+const { 
+  title = "Minh Nguyen's Personal Website", 
+  description = "Website showcasing projects, experience, and writings.", 
+  openGraph = {}
+} = Astro.props;
+
+const {
+  url: ogUrl = Astro.url.href,
+  site_name: ogSite_name = "Minh Nguyen's Personal Website",
+  locale: ogLocale = "en_US",
+  title: ogTitle = title,
+} = openGraph;
+
 ---
 
 <AstroSeo
-  title="Minh Nguyen's Personal Website"
-  description="Minh Nguyen's personal website, showcasing projects, experience, and writings."
+  title={title}
+  description={description}
   canonical="https://minh-nguyen.tech"
   openGraph={{
-    url: "https://minh-nguyen.tech",
-    title: "Landing Page",
-    description: "Minh Nguyen's personal website, showcasing projects, experience, and writings.",
     site_name: "Minh Nguyen's Personal Website",
     type: "website",
-    locale: "en_US",
   }}
 />
+
+<!-- Manual implementation of parameterized OpenGraph tags because Astro's wasn't working -->
+<meta property="og:url" content={ogUrl} />
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:site_name" content={ogSite_name} />
+<meta property="og:locale" content={ogLocale} />
