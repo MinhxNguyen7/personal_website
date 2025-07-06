@@ -3,15 +3,18 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
 // Component
 import BlogEntry from "@/components/blog/BlogEntry.astro";
 import RSSIcon from "@/components/fundations/icons/RSS.astro";
+
 // Content
 import { getCollection } from "astro:content";
+
 const allPostsUnsorted = await getCollection("posts");
 // Sort the posts in descending order by publication date (newest to oldest)
 const allPosts = allPostsUnsorted.sort(
-  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
+  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate),
 );
 // Tags
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
