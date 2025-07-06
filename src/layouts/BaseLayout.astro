@@ -1,14 +1,16 @@
 ---
 import "@/styles/global.css";
-import BaseHead from "@/components/fundations/head/BaseHead.astro";
+import BaseHead, { Props as BaseHeadProps } from "@/components/fundations/head/BaseHead.astro";
 // sections
 import Navigation from "@/components/global/Navigation.astro";
 import Footer from "@/components/global/Footer.astro";
+
+export interface Props extends BaseHeadProps {}
 ---
 
 <html lang="en" class="selection:bg-base-200 selection:text-base-900">
   <head>
-    <BaseHead />
+    <BaseHead {...Astro.props} />
   </head>
   <body class="bg-white dark:bg-base-900 flex flex-col h-svh">
     <Navigation />

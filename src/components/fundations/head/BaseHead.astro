@@ -1,13 +1,18 @@
 ---
-import Seo from "@/components/fundations/head/Seo.astro";
+import Seo, {Props as SeoProps} from "@/components/fundations/head/Seo.astro";
 import Meta from "@/components/fundations/head/Meta.astro";
 import Fonts from "@/components/fundations/head/Fonts.astro";
 import Favicons from "@/components/fundations/head/Favicons.astro";
+
 // Scripts
 import ToggleLocalStorage from "@/components/fundations/scripts/ToggleLocalStorage.astro";
+
+export interface Props {
+  seo?: SeoProps;
+}
 ---
 
-<Seo />
+<Seo {...Astro.props.seo} />
 <Meta />
 <Fonts />
 <Favicons />
