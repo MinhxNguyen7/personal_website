@@ -90,7 +90,7 @@ const relatedPosts = Object.entries(postScores).sort((a, b) => b[1] - a[1]); // 
               tags.map((tag) => (
                 <a
                   href={`/blog/tags/${tag}`}
-                  class="text-sm capitalize text-base-600 dark:text-base-500 hover:text-base-900 dark:hover:text-white"
+                  class="text-xs lg:text-sm capitalize text-base-600 dark:text-base-500 hover:text-base-900 dark:hover:text-white"
                 >
                   {tag}
                 </a>
