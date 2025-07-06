@@ -13,7 +13,7 @@ import { getCollection } from "astro:content";
 const allPostsUnsorted = await getCollection("posts");
 // Sort the posts in descending order by publication date (newest to oldest)
 const allPosts = allPostsUnsorted.sort(
-  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate),
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
 );
 ---
 

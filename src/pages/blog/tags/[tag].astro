@@ -28,7 +28,7 @@ const { posts } = Astro.props;
 const allPostsUnsorted = await getCollection("posts");
 // Sort the posts in descending order by publication date (newest to oldest)
 const allPosts = allPostsUnsorted.sort(
-  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
 // Tags
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
