@@ -27,12 +27,10 @@ const slug = Astro.props.entry.slug;
 
 const allPosts = await getCollection("posts");
 
-allPosts.sort((a, b) => {
-  return (
-    new Date(b.data.pubDate).getTime().getTime() -
-    new Date(a.data.pubDate).getTime().getTime()
-  );
-});
+allPosts.sort(
+  (a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+);
 
 // Sort and filter posts based on overlapping tags
 const tagsSet = new Set(tags);
