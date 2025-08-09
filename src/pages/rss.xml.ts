@@ -16,7 +16,7 @@ export async function GET(context: { site: string }) {
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
-      link: new URL(`/blog/posts/${post.slug}`, context.site).href,
+      link: new URL(`/blog/posts/${post.id}`, context.site).href,
       pubDate: post.data.pubDate,
     })),
     customData: `<language>en-us</language>`,

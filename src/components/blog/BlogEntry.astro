@@ -3,7 +3,7 @@ import SectionEntry from "@/components/SectionEntry.astro";
 
 // Content
 const { link, title, description, pubDate } = {
-  link: "/blog/posts/" + Astro.props.post.slug,
+  link: "/blog/posts/" + Astro.props.post.id,
   title: Astro.props.post.data.title,
   description: Astro.props.post.data.description,
   pubDate: new Date(Astro.props.post.data.pubDate)

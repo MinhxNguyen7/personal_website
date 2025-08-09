@@ -1,7 +1,7 @@
 ---
 export const prerender = true;
 
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { Image } from "astro:assets";
 
 import Text from "@/components/fundations/elements/Text.astro";
@@ -14,17 +14,17 @@ import BlogHeader from "@/components/blog/BlogHeader.astro";
 export async function getStaticPaths() {
   const blogEntries = await getCollection("posts");
   return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 // Content
 const { title, description, image, tags } = Astro.props.entry.data;
-const slug = Astro.props.entry.slug;
+const slug = Astro.props.entry.id;
 
 const allPosts = await getCollection("posts");
 
@@ -44,12 +44,15 @@ allPosts.forEach((post) => {
     }
   });
 
-  if (score > 0 && post.slug !== slug) {
-    postScores[post.slug] = score;
+  if (score > 0 && post.id !== slug) {
+    postScores[post.id] = score;
   }
 });
 
-const relatedPosts = Object.entries(postScores).sort((a, b) => b[1] - a[1]); // Sort by score
+const relatedPosts = Object.entries(postScores)
+  .sort((a, b) => b[1] - a[1]) // Sort by score
+  .map(([postId]) => allPosts.find((post) => post.id === postId))
+  .filter((post) => post !== undefined);
 ---
 
 <BaseLayout
